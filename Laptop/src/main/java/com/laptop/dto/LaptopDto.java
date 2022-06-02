@@ -1,4 +1,4 @@
-package com.laptop.entity;
+package com.laptop.dto;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,12 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table
-public class Laptop {
+public class LaptopDto {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	private String name;
@@ -20,21 +16,13 @@ public class Laptop {
 	private String webcam;
 	private int price;
 	
-	public Laptop() {
-		super();
+	public LaptopDto() {
+
 	}
 
 	
-	public Laptop(String name, String ramAvailable, String osName, String webcam, int price) {
-		super();
-		this.name = name;
-		this.ramAvailable = ramAvailable;
-		this.osName = osName;
-		this.webcam = webcam;
-		this.price = price;
-	}
 
-	public Laptop(int id, String name, String ramAvailable, String osName, String webcam, int price) {
+	public LaptopDto(int id, String name, String ramAvailable, String osName, String webcam, int price) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -92,13 +80,6 @@ public class Laptop {
 		this.price = price;
 	}
 
-	@Override
-	public String toString() {
-		return "Laptop [id=" + id + ", name=" + name + ", ramAvailable=" + ramAvailable + ", osName=" + osName
-				+ ", webcam=" + webcam + ", price=" + price + "]";
-	}
 	
 	
-	
-	
-}	
+}
