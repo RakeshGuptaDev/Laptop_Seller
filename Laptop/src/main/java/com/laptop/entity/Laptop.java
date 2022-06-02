@@ -1,5 +1,6 @@
 package com.laptop.entity;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -92,13 +93,4 @@ public class Laptop {
 		this.price = price;
 	}
 
-	@Override
-	public String toString() {
-		return "Laptop [id=" + id + ", name=" + name + ", ramAvailable=" + ramAvailable + ", osName=" + osName
-				+ ", webcam=" + webcam + ", price=" + price + "]";
-	}
-	
-	
-	
-	
-}	
+}
