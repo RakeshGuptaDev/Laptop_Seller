@@ -1,5 +1,7 @@
 package com.laptop.entity;
 
+
+
 public class Laptop {
 
 	
@@ -93,3 +95,5 @@ public class Laptop {
 	
 	
 }
+
+
