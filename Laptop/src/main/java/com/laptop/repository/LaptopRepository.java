@@ -7,6 +7,5 @@ import com.laptop.entity.Laptop;
 
 @Repository
 public interface LaptopRepository extends JpaRepository<Laptop, Integer>{
-
 	
 }
