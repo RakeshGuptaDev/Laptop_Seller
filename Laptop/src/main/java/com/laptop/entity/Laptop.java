@@ -15,6 +15,7 @@ public class Laptop {
 		super();
 	}
 
+	
 	public Laptop(String name, String ramAvailable, String osName, String webcam, int price) {
 		super();
 		this.name = name;
