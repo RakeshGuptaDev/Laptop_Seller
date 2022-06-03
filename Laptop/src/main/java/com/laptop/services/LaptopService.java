@@ -73,7 +73,7 @@ public class LaptopService {
 	
 
 	public List<Laptop> getLaptopByName(String name) throws LaptopNotFoundException {
-		if(laptopRepository.findByName(name)==null){
+		if(laptopRepository.findByName(name)==null || laptopRepository.findByName(name).isEmpty()){
 			throw new LaptopNotFoundException("This laptop is not present");
 		}else {
 			return laptopRepository.findByName(name);
@@ -84,7 +84,7 @@ public class LaptopService {
 
 	public List<Laptop> getLaptopByOsName(String osName) throws LaptopNotFoundException{
 		
-		if(laptopRepository.findByOsName(osName)==null){
+		if(laptopRepository.findByOsName(osName)==null || laptopRepository.findByOsName(osName).isEmpty()){
 			throw new LaptopNotFoundException("This laptop is not present");
 		}else {
 			return laptopRepository.findByOsName(osName);
@@ -94,7 +94,7 @@ public class LaptopService {
 
 	public List<Laptop> getLaptopByWebcam(String webCam) throws LaptopNotFoundException{
 		
-		if(laptopRepository.findByWebcam(webCam)==null){
+		if(laptopRepository.findByWebcam(webCam)==null || laptopRepository.findByWebcam(webCam).isEmpty()){
 			throw new LaptopNotFoundException("This laptop is not present");
 		}else {
 			return laptopRepository.findByWebcam(webCam);
@@ -103,7 +103,7 @@ public class LaptopService {
 
 	public List<Laptop> getLaptopByRamAvaliable(String ramAvaliable) throws LaptopNotFoundException{
 		
-		if(laptopRepository.findByRamAvailable(ramAvaliable)==null){
+		if(laptopRepository.findByRamAvailable(ramAvaliable)==null || laptopRepository.findByRamAvailable(ramAvaliable).isEmpty()){
 			throw new LaptopNotFoundException("This laptop is not present");
 		}else {
 			return laptopRepository.findByRamAvailable(ramAvaliable);
@@ -112,7 +112,7 @@ public class LaptopService {
 	
 	public List<Laptop> getLaptopByPrice(int price) throws LaptopNotFoundException{
 		
-		if(laptopRepository.findByPrice(price)==null){
+		if(laptopRepository.findByPrice(price)==null || laptopRepository.findByPrice(price).isEmpty()){
 			throw new LaptopNotFoundException("This laptop is not present");
 		}else {
 			return laptopRepository.findByPrice(price);
@@ -121,7 +121,7 @@ public class LaptopService {
 	
 public List<Laptop> getLaptopByPriceGreater(int price) throws LaptopNotFoundException{
 		
-		if(laptopRepository.findByPriceGreaterThan(price)==null){
+		if(laptopRepository.findByPriceGreaterThan(price)==null || laptopRepository.findByPriceGreaterThan(price).isEmpty()){
 			throw new LaptopNotFoundException("This laptop is not present");
 		}else {
 			return laptopRepository.findByPriceGreaterThan(price);
