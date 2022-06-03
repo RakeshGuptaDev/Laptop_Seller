@@ -4,40 +4,62 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @RestControllerAdvice
 public class AllExceptionHandler {
 
 	
 
+	
+	
+	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
-    public Map<String, String> handleInvalidArgument(MethodArgumentNotValidException ex) {
+    public ResponseEntity<Map<String, String>> handleInvalidArgument(MethodArgumentNotValidException ex) {
         Map<String, String> errorMap = new HashMap<>();
         ex.getBindingResult().getFieldErrors().forEach(error -> {
             errorMap.put(error.getField(), error.getDefaultMessage());
         });
-        return errorMap;
+        return new ResponseEntity<>(errorMap,HttpStatus.BAD_REQUEST);
     }
 	
 
 	
     @ExceptionHandler(LaptopNotFoundException.class)
-    public Map<String, String> handleBusinessException(LaptopNotFoundException ex) {
+    public ResponseEntity<Map<String, String>> handleBusinessException(LaptopNotFoundException ex) {
         Map<String, String> errorMap = new HashMap<>();
         errorMap.put("errorMessage", ex.getMessage());
-        return errorMap;
+        return new ResponseEntity<>(errorMap,HttpStatus.BAD_REQUEST);
     }
 	
     
 
     @ExceptionHandler(NumberFormatException.class)
-    public Map<String, String> handleBusinessExceptiont(NumberFormatException ex) {
+    public ResponseEntity<Map<String, String>> handleBusinessException1(NumberFormatException ex) {
         Map<String, String> errorMap = new HashMap<>();
         errorMap.put("errorMessage", "Invalid Input");
-        return errorMap;
+        return new ResponseEntity<>(errorMap,HttpStatus.BAD_REQUEST);
     }
+    
+//    @ExceptionHandler(HttpMessageNotReadableException.class)
+//    public Map<String, String> handleBusinessException2(HttpMessageNotReadableException ex) {
+//        Map<String, String> errorMap = new HashMap<>();
+//        errorMap.put("errorMessage", "Price should be NUMBER");
+//        return errorMap;
+//    }
+    
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<Map<String, String>>  handleBusinessException2(HttpMessageNotReadableException ex) {
+        Map<String, String> errorMap = new HashMap<>();
+        errorMap.put("errorMessage", "Price should be NUMBER");
+        return new ResponseEntity<>(errorMap,HttpStatus.BAD_REQUEST);
+    }
+	
 }

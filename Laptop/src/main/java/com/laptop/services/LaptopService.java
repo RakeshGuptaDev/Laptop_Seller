@@ -35,10 +35,16 @@ public class LaptopService {
 	
 	
 
-	public Laptop updateLaptop(Laptop laptop,int id) {
+	public Laptop updateLaptop(LaptopDto laptopDto,int id) {
 			
 		Laptop laptopSave =  laptopRepository.findById(id).get();
-		return laptopRepository.save(laptop);
+		laptopSave.setName(laptopDto.getName());
+		laptopSave.setOsName(laptopDto.getOsName());
+		laptopSave.setPrice(laptopDto.getPrice());
+		laptopSave.setRamAvailable(laptopDto.getRamAvailable());
+		laptopSave.setWebcam(laptopDto.getWebcam());
+		
+		return laptopRepository.save(laptopSave);
 	}
 	
 	
@@ -66,7 +72,7 @@ public class LaptopService {
 	}
 	
 
-	public Laptop getLaptopByName(String name) throws LaptopNotFoundException {
+	public List<Laptop> getLaptopByName(String name) throws LaptopNotFoundException {
 		if(laptopRepository.findByName(name)==null){
 			throw new LaptopNotFoundException("This laptop is not present");
 		}else {
@@ -76,7 +82,7 @@ public class LaptopService {
 	}
 	
 
-	public Laptop getLaptopByOsName(String osName) throws LaptopNotFoundException{
+	public List<Laptop> getLaptopByOsName(String osName) throws LaptopNotFoundException{
 		
 		if(laptopRepository.findByOsName(osName)==null){
 			throw new LaptopNotFoundException("This laptop is not present");
@@ -86,7 +92,7 @@ public class LaptopService {
 	}
 	
 
-	public Laptop getLaptopByWebcam(String webCam) throws LaptopNotFoundException{
+	public List<Laptop> getLaptopByWebcam(String webCam) throws LaptopNotFoundException{
 		
 		if(laptopRepository.findByWebcam(webCam)==null){
 			throw new LaptopNotFoundException("This laptop is not present");
@@ -95,7 +101,7 @@ public class LaptopService {
 		}
 	}
 
-	public Laptop getLaptopByRamAvaliable(String ramAvaliable) throws LaptopNotFoundException{
+	public List<Laptop> getLaptopByRamAvaliable(String ramAvaliable) throws LaptopNotFoundException{
 		
 		if(laptopRepository.findByRamAvailable(ramAvaliable)==null){
 			throw new LaptopNotFoundException("This laptop is not present");
@@ -104,7 +110,7 @@ public class LaptopService {
 		}
 	}
 	
-	public Laptop getLaptopByPrice(int price) throws LaptopNotFoundException{
+	public List<Laptop> getLaptopByPrice(int price) throws LaptopNotFoundException{
 		
 		if(laptopRepository.findByPrice(price)==null){
 			throw new LaptopNotFoundException("This laptop is not present");

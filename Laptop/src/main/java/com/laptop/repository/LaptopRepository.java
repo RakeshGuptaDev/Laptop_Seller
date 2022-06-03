@@ -10,15 +10,15 @@ import com.laptop.entity.Laptop;
 @Repository
 public interface LaptopRepository extends JpaRepository<Laptop, Integer>{
 	
-	Laptop findByName(String name);
+	List<Laptop> findByName(String name);
 	
-	Laptop findByRamAvailable(String ramAvaliable);
+	List<Laptop> findByRamAvailable(String ramAvaliable);
 	
-	Laptop findByOsName(String osName);
+	List<Laptop> findByOsName(String osName);
 	
-	Laptop findByWebcam(String webCam);
+	List<Laptop> findByWebcam(String webCam);
 	
-	Laptop findByPrice(int price);
+	List<Laptop> findByPrice(int price);
 	
 	List<Laptop> findByPriceGreaterThan(int price);
 }
