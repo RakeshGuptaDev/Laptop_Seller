@@ -1,12 +1,15 @@
 package com.laptop.services;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.laptop.dto.LaptopDto;
 import com.laptop.entity.Laptop;
+import com.laptop.exception.LaptopNotFoundException;
 import com.laptop.repository.LaptopRepository;
 
 @Service
@@ -15,30 +18,28 @@ public class LaptopService {
 	@Autowired
 	private LaptopRepository laptopRepository;
 	
-	public Laptop addLaptop(Laptop laptop) {
-		return laptopRepository.save(laptop);
-	}
-	
-//	public Laptop updateLaptop(LaptopDto laptopDto,int id) {
-//		Laptop laptopSave =  laptopRepository.findById(id).get();
-//		laptopSave.setName(laptopDto.getName());
-//		laptopSave.setOsName(laptopDto.getOsName());
-//		laptopSave.setPrice(laptopDto.getPrice());
-//		laptopSave.setRamAvailable(laptopDto.getRamAvailable());
-//		laptopSave.setWebcam(laptopDto.getWebcam());
-//		
-//		return laptopRepository.save(laptopSave);
+//	public Laptop addLaptop(Laptop laptop) {
+//		return laptopRepository.save(laptop);
 //	}
+	
+	public Laptop addLaptop(LaptopDto laptopDto) {
+		Laptop laptopSave =  new Laptop();
+		laptopSave.setName(laptopDto.getName());
+		laptopSave.setOsName(laptopDto.getOsName());
+		laptopSave.setPrice(laptopDto.getPrice());
+		laptopSave.setRamAvailable(laptopDto.getRamAvailable());
+		laptopSave.setWebcam(laptopDto.getWebcam());
+		
+		return laptopRepository.save(laptopSave);
+	}
 	
 	
 
 	public Laptop updateLaptop(Laptop laptop,int id) {
 			
 		Laptop laptopSave =  laptopRepository.findById(id).get();
-		return laptopRepository.save(laptopSave);
+		return laptopRepository.save(laptop);
 	}
-	
-	
 	
 	
 	public String deleteLaptop(int id) {
@@ -49,14 +50,75 @@ public class LaptopService {
 	}
 	
 	
-	public Laptop getLaptop(int id) {
-		return laptopRepository.findById(id).get();
+	public Laptop getLaptop(int id) throws LaptopNotFoundException{
+		
+//		Optional<Laptop> laptop = laptopRepository.findById(id).ifPresentOrElse(()->{return },());; 
+		try {
+			return laptopRepository.findById(id).get();
+		}catch(NoSuchElementException e) {
+			throw new LaptopNotFoundException("This laptop is not present");
+		}
+
 	}
 	
 	public List<Laptop> getAllLaptop() {
 		return laptopRepository.findAll();
 	}
 	
+
+	public Laptop getLaptopByName(String name) throws LaptopNotFoundException {
+		if(laptopRepository.findByName(name)==null){
+			throw new LaptopNotFoundException("This laptop is not present");
+		}else {
+			return laptopRepository.findByName(name);
+		}
+		
+	}
 	
+
+	public Laptop getLaptopByOsName(String osName) throws LaptopNotFoundException{
+		
+		if(laptopRepository.findByOsName(osName)==null){
+			throw new LaptopNotFoundException("This laptop is not present");
+		}else {
+			return laptopRepository.findByOsName(osName);
+		}
+	}
 	
+
+	public Laptop getLaptopByWebcam(String webCam) throws LaptopNotFoundException{
+		
+		if(laptopRepository.findByWebcam(webCam)==null){
+			throw new LaptopNotFoundException("This laptop is not present");
+		}else {
+			return laptopRepository.findByWebcam(webCam);
+		}
+	}
+
+	public Laptop getLaptopByRamAvaliable(String ramAvaliable) throws LaptopNotFoundException{
+		
+		if(laptopRepository.findByRamAvailable(ramAvaliable)==null){
+			throw new LaptopNotFoundException("This laptop is not present");
+		}else {
+			return laptopRepository.findByRamAvailable(ramAvaliable);
+		}
+	}
+	
+	public Laptop getLaptopByPrice(int price) throws LaptopNotFoundException{
+		
+		if(laptopRepository.findByPrice(price)==null){
+			throw new LaptopNotFoundException("This laptop is not present");
+		}else {
+			return laptopRepository.findByPrice(price);
+		}
+	}
+	
+public List<Laptop> getLaptopByPriceGreater(int price) throws LaptopNotFoundException{
+		
+		if(laptopRepository.findByPriceGreaterThan(price)==null){
+			throw new LaptopNotFoundException("This laptop is not present");
+		}else {
+			return laptopRepository.findByPriceGreaterThan(price);
+		}
+	}
 }

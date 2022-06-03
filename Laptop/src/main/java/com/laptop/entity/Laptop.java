@@ -22,12 +22,12 @@ public class Laptop {
 	private int price;
 	
 	public Laptop() {
-		super();
+		
 	}
 
 	
 	public Laptop(String name, String ramAvailable, String osName, String webcam, int price) {
-		super();
+		
 		this.name = name;
 		this.ramAvailable = ramAvailable;
 		this.osName = osName;
@@ -36,7 +36,7 @@ public class Laptop {
 	}
 
 	public Laptop(int id, String name, String ramAvailable, String osName, String webcam, int price) {
-		super();
+		
 		this.id = id;
 		this.name = name;
 		this.ramAvailable = ramAvailable;

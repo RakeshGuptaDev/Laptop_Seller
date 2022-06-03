@@ -5,15 +5,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class LaptopDto {
 
-	private int id;
 	
+	@NotEmpty(message = "Name should not be Empty")
 	private String name;
+	
 	private String ramAvailable;
+	
+	@NotEmpty(message = "Name should not be Empty")
 	private String osName;
 	private String webcam;
+	
+	@Min(20000)
 	private int price;
 	
 	public LaptopDto() {
@@ -22,9 +30,8 @@ public class LaptopDto {
 
 	
 
-	public LaptopDto(int id, String name, String ramAvailable, String osName, String webcam, int price) {
-		super();
-		this.id = id;
+	public LaptopDto(String name, String ramAvailable, String osName, String webcam, int price) {
+		
 		this.name = name;
 		this.ramAvailable = ramAvailable;
 		this.osName = osName;
@@ -32,13 +39,7 @@ public class LaptopDto {
 		this.price = price;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 
 	public String getName() {
 		return name;
