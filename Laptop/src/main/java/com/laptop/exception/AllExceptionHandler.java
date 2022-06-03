@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -62,4 +63,19 @@ public class AllExceptionHandler {
         return new ResponseEntity<>(errorMap,HttpStatus.BAD_REQUEST);
     }
 	
+    
+    @ExceptionHandler(EmptyResultDataAccessException.class)
+    public ResponseEntity<Map<String, String>> handleBusinessException1(EmptyResultDataAccessException ex) {
+        Map<String, String> errorMap = new HashMap<>();
+        errorMap.put("errorMessage", " Laptop not present");
+        return new ResponseEntity<>(errorMap,HttpStatus.BAD_REQUEST);
+    }
+    
+    
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<Map<String, String>>  handleBusinessException2(NoSuchElementException ex) {
+        Map<String, String> errorMap = new HashMap<>();
+        errorMap.put("errorMessage", "Laptop not present");
+        return new ResponseEntity<>(errorMap,HttpStatus.BAD_REQUEST);
+    }
 }
