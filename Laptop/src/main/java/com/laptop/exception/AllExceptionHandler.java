@@ -37,7 +37,7 @@ public class AllExceptionHandler {
     public ResponseEntity<Map<String, String>> handleBusinessException(LaptopNotFoundException ex) {
         Map<String, String> errorMap = new HashMap<>();
         errorMap.put("errorMessage", ex.getMessage());
-        return new ResponseEntity<>(errorMap,HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorMap,HttpStatus.NOT_FOUND);
     }
 	
     
