@@ -50,7 +50,7 @@ public class LaptopController {
 	@PutMapping("/{id}")
 	public ResponseEntity<Laptop> updateLaptop(@RequestBody @Valid LaptopDto laptop,@PathVariable int  id )  throws EmptyResultDataAccessException{
 //		return laptopService.updateLaptop(laptop,id);
-		return new ResponseEntity<>(laptopService.updateLaptop(laptop,id),HttpStatus.CREATED);
+		return new ResponseEntity<>(laptopService.updateLaptop(laptop,id),HttpStatus.OK);
 	}
 	
 	
@@ -72,39 +72,39 @@ public class LaptopController {
 	}
 	
 	@GetMapping("/name/{name}")
-	public List<Laptop>  getLaptopByName(@PathVariable String name) throws LaptopNotFoundException {
-		return laptopService.getLaptopByName(name);
-//		return new ResponseEntity<>(laptopService.getLaptopByName(name),HttpStatus.OK);
+	public ResponseEntity<List<Laptop>>   getLaptopByName(@PathVariable String name) throws LaptopNotFoundException {
+//		return laptopService.getLaptopByName(name);
+		return new ResponseEntity<>(laptopService.getLaptopByName(name),HttpStatus.OK);
 	}
 	
 	@GetMapping("/ramAvailable/{ramAvailable}")
-	public List<Laptop> getLaptopByRam(@PathVariable String ramAvailable) throws LaptopNotFoundException{
-		return laptopService.getLaptopByRamAvaliable(ramAvailable);
-//		return new ResponseEntity<>(laptopService.getLaptopByRamAvaliable(ramAvailable),HttpStatus.OK);
+	public ResponseEntity<List<Laptop>> getLaptopByRam(@PathVariable String ramAvailable) throws LaptopNotFoundException{
+//		return laptopService.getLaptopByRamAvaliable(ramAvailable);
+		return new ResponseEntity<>(laptopService.getLaptopByRamAvaliable(ramAvailable),HttpStatus.OK);
 	}
 	
 	@GetMapping("/webcam/{webcam}")
-	public List<Laptop> getLaptopByWebCam(@PathVariable String webcam) throws LaptopNotFoundException{
-		return laptopService.getLaptopByWebcam(webcam);
-//		return new ResponseEntity<>(laptopService.getLaptopByWebcam(webcam),HttpStatus.OK);
+	public ResponseEntity<List<Laptop>> getLaptopByWebCam(@PathVariable String webcam) throws LaptopNotFoundException{
+//		return laptopService.getLaptopByWebcam(webcam);
+		return new ResponseEntity<>(laptopService.getLaptopByWebcam(webcam),HttpStatus.OK);
 	}
 	
 	@GetMapping("/price/{price}")
-	public List<Laptop> getLaptopByPrice(@PathVariable int price) throws LaptopNotFoundException {
-		return laptopService.getLaptopByPrice(price);
-//		return new ResponseEntity<>( laptopService.getLaptopByPrice(price),HttpStatus.OK);
+	public ResponseEntity<List<Laptop>> getLaptopByPrice(@PathVariable int price) throws LaptopNotFoundException {
+//		return laptopService.getLaptopByPrice(price);
+		return new ResponseEntity<>( laptopService.getLaptopByPrice(price),HttpStatus.OK);
 	}
 	
 	@GetMapping("/osName/{osName}")
-	public List<Laptop> getLaptopByPrice(@PathVariable String osName) throws LaptopNotFoundException {
-		return laptopService.getLaptopByOsName(osName);
-//		return new ResponseEntity<>( laptopService.getLaptopByPrice(price),HttpStatus.OK);
+	public ResponseEntity<List<Laptop>> getLaptopByPrice(@PathVariable String osName) throws LaptopNotFoundException {
+//		return laptopService.getLaptopByOsName(osName);
+		return new ResponseEntity<>( laptopService.getLaptopByOsName(osName),HttpStatus.OK);
 	}
 	
 	@GetMapping("/price/custom/{price}")
-	public List<Laptop> getLaptopByPriceGreater(@PathVariable int price) throws LaptopNotFoundException {
-		return laptopService.getLaptopByPriceGreater(price);
-//		return new ResponseEntity<>( laptopService.getLaptopByPriceGreater(price),HttpStatus.OK);
+	public ResponseEntity<List<Laptop>> getLaptopByPriceGreater(@PathVariable int price) throws LaptopNotFoundException {
+//		return laptopService.getLaptopByPriceGreater(price);
+		return new ResponseEntity<>( laptopService.getLaptopByPriceGreater(price),HttpStatus.OK);
 	}
 	
 }
