@@ -10,6 +10,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -86,5 +87,13 @@ public class AllExceptionHandler {
         Map<String, String> errorMap = new HashMap<>();
         errorMap.put("errorMessage", "Webcam name should be unique");
         return new ResponseEntity<>(errorMap,HttpStatus.BAD_REQUEST);
+    }
+    
+
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public Map<String, String> handleBusinessException2(HttpRequestMethodNotSupportedException ex) {
+        Map<String, String> errorMap = new HashMap<>();
+        errorMap.put("errorMessage", "Enter the id");
+        return errorMap;
     }
 }
