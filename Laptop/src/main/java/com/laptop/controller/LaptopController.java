@@ -93,6 +93,12 @@ public class LaptopController {
 //		return new ResponseEntity<>( laptopService.getLaptopByPrice(price),HttpStatus.OK);
 	}
 	
+	@GetMapping("/osName/{osName}")
+	public List<Laptop> getLaptopByPrice(@PathVariable String osName) throws LaptopNotFoundException {
+		return laptopService.getLaptopByOsName(osName);
+//		return new ResponseEntity<>( laptopService.getLaptopByPrice(price),HttpStatus.OK);
+	}
+	
 	@GetMapping("/price/custom/{price}")
 	public List<Laptop> getLaptopByPriceGreater(@PathVariable int price) throws LaptopNotFoundException {
 		return laptopService.getLaptopByPriceGreater(price);
