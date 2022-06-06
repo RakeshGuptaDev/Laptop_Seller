@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import javax.validation.UnexpectedTypeException;
+
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -76,6 +78,13 @@ public class AllExceptionHandler {
     public ResponseEntity<Map<String, String>>  handleBusinessException2(NoSuchElementException ex) {
         Map<String, String> errorMap = new HashMap<>();
         errorMap.put("errorMessage", "Laptop not present");
+        return new ResponseEntity<>(errorMap,HttpStatus.BAD_REQUEST);
+    }
+    
+    @ExceptionHandler(UnexpectedTypeException.class)
+    public ResponseEntity<Map<String, String>>  handleBusinessException3(UnexpectedTypeException ex) {
+        Map<String, String> errorMap = new HashMap<>();
+        errorMap.put("errorMessage", "Webcam name should be unique");
         return new ResponseEntity<>(errorMap,HttpStatus.BAD_REQUEST);
     }
 }

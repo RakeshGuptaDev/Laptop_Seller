@@ -1,13 +1,17 @@
 package com.laptop.dto;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.UniqueElements;
 
 public class LaptopDto {
 
@@ -19,6 +23,8 @@ public class LaptopDto {
 	
 	@NotEmpty(message = "Name should not be Empty")
 	private String osName;
+	
+	@UniqueElements
 	private String webcam;
 	
 	@Min(20000)
