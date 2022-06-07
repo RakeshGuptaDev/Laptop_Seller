@@ -62,12 +62,54 @@
             padding: 8px;
             font-size: 20px;  
             font-weight: bold;
-        }
-        
+        }      
 
     
     </style>
-    <!-- Bootstrap CSS -->
+    <style>
+        * {
+          box-sizing: border-box;
+        }
+        
+        body {
+          font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        /* Float four columns side by side */
+        .column {
+          float: left;
+          width: 25%;
+          padding: 0 10px;
+        }
+        
+        /* Remove extra left and right margins, due to padding */
+        .row {margin: 0 -5px;}
+        
+        /* Clear floats after the columns */
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+        
+        /* Responsive columns */
+        @media screen and (max-width: 600px) {
+          .column {
+            width: 100%;
+            display: block;
+            margin-bottom: 20px;
+          }
+        }
+        
+        /* Style the counter cards */
+        .card {
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          padding: 16px;
+          text-align: center;
+          background-color: #f1f1f1;
+        }
+        </style>
+         <!-- Bootstrap CSS -->
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -95,8 +137,7 @@ crossorigin="anonymous">
 </head>
 
 <body>
-
-    <!-- nav bar started -->
+  <!-- nav bar started -->
 	<!-- --------------------------------nav start---------------------- -->
 	<nav class="navbar navbar-expand-lg navbar-dark "
     style="background-color: orange;">
@@ -128,16 +169,12 @@ crossorigin="anonymous">
 
                 
 
-                
-
-                
-
                 <li class="nav-item"><a class="nav-link" href="aboutus.html">About_Us</a>
                 </li>
                 
             </ul>
         </div>
-        <form action="search.jsp" method="post">
+        <form action="#" method="post">
             <input type="text" placeholder="Search" name="search">
             <button type="submit" style="background-color: lightblue;">
                 <i class="fa fa-search"></i>
@@ -149,11 +186,6 @@ crossorigin="anonymous">
 
 <!-- nav bar ended -->
 
-<Script src="js/bootstrap.bundle.min.js"></Script>
-<script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
     <div id="main">
     <div id="body">
         <div>
@@ -210,7 +242,8 @@ crossorigin="anonymous">
     <table id="table">
     </table>
 
-     <!-- -----------------footer-------#212529-------- -->
+
+<!-- -----------------footer-------#212529-------- -->
 
  <footer class="footery" style="background-color:rgb(55, 178, 194); ; margin-top: 50px;" >
  
@@ -218,20 +251,20 @@ crossorigin="anonymous">
       <div class="col-lg-4 col-md-6 col-sm-12 pt-5">
         
         <img src="lp.jpg" alt="image not found" width="200px" height="80px">
-        <h1 style="margin-left: 10px; color:crimson; text-align: left; font-style: italic;" >ShopHere!</h1>
+        <h1 style="margin-left: 10px; color:crimson; text-align: left; font-style: italic;" >Laptop Seller!</h1>
         
       </div>
       <div class="col-lg-4 col-md-6 col-sm-12 " style="margin-top: 30px;">
         <h5 class="pb-10 pb-2" style="color: white; margin-bottom: 20px;">Important Links</h5>
-        <a href="laptop.html">Home</a><br>
-        <a href="" >Menu</a><br>
+        <a href="homes.html">Home</a><br><br>
+        <a href="laptop.html" >Laptop Form</a><br><br>
        
         <a href="aboutus.html" >About Us</a><br>
       </div>
       <div class="col-lg-4  pt-5" style="color: white;">
        <h5 class="pb-10 pb-2">Contact Us</h5>
        <p>Address: Gala No. 3,4,5,6, Krishna Mill Compound, Sonapur Lane, Off, Lal Bahadur Shastri Rd, Bhandup West, Mumbai, Maharashtra 400078</p>
-       <h5>Email id: <br><u> customerservice@foodstore.com</u></h5>
+       <h5>Email id: <br><u> customerservice@laptop.com</u></h5>
        <br><i class="bi bi-telephone"></i> : 9876543210</p></p>
       </div>
         
@@ -244,8 +277,6 @@ crossorigin="anonymous">
   
   
   <!-- ----------------------------Footer End---------------------------- -->
-      <Script src="js/bootstrap.bundle.min.js"></Script>
-
     <script>
 
         
@@ -329,7 +360,11 @@ crossorigin="anonymous">
                 return response.json();
             }).then((data) => {
                 console.log(data);
-                
+                if(data.errorMessage!=null){
+                	document.getElementById('table').innerHTML= data.errorMessage;
+                    return;
+                }
+                data = [data];
                 showAll(data);
             });
         }
@@ -371,7 +406,7 @@ crossorigin="anonymous">
         //Deleting laptop
         function sendDelete() {
             var id = document.getElementById("delete").value;
-            id = parseInt(id)
+            id = parseInt(id);
             if(Number.isInteger(id)==false){
                 document.getElementById('table').innerHTML="Enter valid Input!";
                 return;
@@ -380,8 +415,27 @@ crossorigin="anonymous">
             url = "http://localhost:8091/laptop/" + id;
             var req = new XMLHttpRequest();
             req.open("DELETE", url);
+            req.onreadystatechange = function() {
+            		res= req.responseText;
+            		console.log(res);
+            		
+            		res= JSON.parse(res);
+            		if(res.errorMessage!=null){
+            			document.getElementById('table').innerHTML= res.errorMessage;
+            		}
+            		if(res!=null){
+            			console.log(res);
+            			document.getElementById('table').innerHTML += data.errorMessage;
+            		}
+            	  //console.log(req.responseText);
+            	  //res = res.json();
+            	  //if(res.errorMessage!=null){
+            		//              	  //}
+            	};
             req.setRequestHeader("Content-Type", "application/json");
             req.send(laptop);
+            
+
         }
 
         //Updating laptop
@@ -423,6 +477,6 @@ crossorigin="anonymous">
             return laptop;
         }
     </script>
-</body>
+  
 
 </html>
