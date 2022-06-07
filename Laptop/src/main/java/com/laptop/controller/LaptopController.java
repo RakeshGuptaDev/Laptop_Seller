@@ -106,5 +106,18 @@ public class LaptopController {
 //		return laptopService.getLaptopByPriceGreater(price);
 		return new ResponseEntity<>( laptopService.getLaptopByPriceGreater(price),HttpStatus.OK);
 	}
+
+	@GetMapping("/name/price/{name}/{price}")
+	public ResponseEntity<List<Laptop>> getLaptopByNameAndPrice(@PathVariable String name,@PathVariable int price) throws LaptopNotFoundException {
+//		return laptopService.getLaptopByPriceGreater(price);
+		return new ResponseEntity<>( laptopService.getLaptopByNameAndPrice(name,price),HttpStatus.OK);
+	}
+	
+	@GetMapping("/ramAvailable/osName/price/{ramAvailable}/{osName}/{price}")
+	public ResponseEntity<List<Laptop>> getLaptopByRamAvailableAndOsNameAndPrice(@PathVariable String ramAvailable,@PathVariable String osName,@PathVariable int price) throws LaptopNotFoundException {
+//		return laptopService.getLaptopByPriceGreater(price);
+		return new ResponseEntity<>( laptopService.getLaptopByRamAvailableAndOsNameAndPrice(ramAvailable,osName,price),HttpStatus.OK);
+	}
+	
 	
 }

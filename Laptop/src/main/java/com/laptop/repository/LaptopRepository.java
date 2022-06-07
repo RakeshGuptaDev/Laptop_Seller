@@ -21,4 +21,8 @@ public interface LaptopRepository extends JpaRepository<Laptop, Integer>{
 	List<Laptop> findByPrice(int price);
 	
 	List<Laptop> findByPriceGreaterThan(int price);
+	
+	List<Laptop> findByNameAndPrice(String name , int price);
+	
+	List<Laptop> findByRamAvailableAndOsNameAndPrice(String ramAvailable,String osName,int price);
 }

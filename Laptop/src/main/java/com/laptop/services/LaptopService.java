@@ -119,12 +119,30 @@ public class LaptopService {
 		}
 	}
 	
-public List<Laptop> getLaptopByPriceGreater(int price) throws LaptopNotFoundException{
+	public List<Laptop> getLaptopByPriceGreater(int price) throws LaptopNotFoundException{
 		
 		if(laptopRepository.findByPriceGreaterThan(price)==null || laptopRepository.findByPriceGreaterThan(price).isEmpty()){
 			throw new LaptopNotFoundException("This laptop is not present");
 		}else {
 			return laptopRepository.findByPriceGreaterThan(price);
+		}
+	}
+	
+	public List<Laptop> getLaptopByNameAndPrice(String name,int price) throws LaptopNotFoundException{
+		
+		if(laptopRepository.findByNameAndPrice(name,price).isEmpty()){
+			throw new LaptopNotFoundException("This laptop is not present");
+		}else {
+			return laptopRepository.findByNameAndPrice(name,price);
+		}
+	}
+	
+	public List<Laptop> getLaptopByRamAvailableAndOsNameAndPrice(String ramAvaliable,String osName,int price) throws LaptopNotFoundException{
+		
+		if(laptopRepository.findByRamAvailableAndOsNameAndPrice(ramAvaliable,osName,price).isEmpty()){
+			throw new LaptopNotFoundException("This laptop is not present");
+		}else {
+			return laptopRepository.findByRamAvailableAndOsNameAndPrice(ramAvaliable,osName,price);
 		}
 	}
 }

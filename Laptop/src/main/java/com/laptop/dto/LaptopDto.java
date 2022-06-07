@@ -24,7 +24,7 @@ public class LaptopDto {
 	@NotEmpty(message = "Name should not be Empty")
 	private String osName;
 	
-	@UniqueElements
+	
 	private String webcam;
 	
 	@Min(20000)
