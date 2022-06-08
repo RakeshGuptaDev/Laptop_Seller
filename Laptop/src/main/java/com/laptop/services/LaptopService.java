@@ -145,4 +145,22 @@ public class LaptopService {
 			return laptopRepository.findByRamAvailableAndOsNameAndPrice(ramAvaliable,osName,price);
 		}
 	}
+	
+	public List<Laptop> getLaptopByNameStartsWith(String name) throws LaptopNotFoundException{
+		
+		if(laptopRepository.findByNameStartsWith(name).isEmpty()){
+			throw new LaptopNotFoundException("This laptop is not present");
+		}else {
+			return laptopRepository.findByNameStartsWith(name);
+		}
+	}
+	
+	public List<Laptop> getLaptopByNameBetween(String name) throws LaptopNotFoundException{
+		name = "%"+name+"%";
+		if(laptopRepository.findByNameLike(name).isEmpty()){
+			throw new LaptopNotFoundException("This laptop is not present");
+		}else {
+			return laptopRepository.findByNameLike(name);
+		}
+	}
 }

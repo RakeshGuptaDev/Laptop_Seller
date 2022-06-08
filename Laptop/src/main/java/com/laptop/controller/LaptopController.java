@@ -77,6 +77,19 @@ public class LaptopController {
 		return new ResponseEntity<>(laptopService.getLaptopByName(name),HttpStatus.OK);
 	}
 	
+	@GetMapping("/startWithname/{name}")
+	public ResponseEntity<List<Laptop>>   getLaptopByNameStartsWith(@PathVariable String name) throws LaptopNotFoundException {
+//		return laptopService.getLaptopByName(name);
+		return new ResponseEntity<>(laptopService.getLaptopByNameStartsWith(name),HttpStatus.OK);
+	}
+	
+	@GetMapping("/betweenname/{name}")
+	public ResponseEntity<List<Laptop>>   getLaptopByNameBetween(@PathVariable String name) throws LaptopNotFoundException {
+//		return laptopService.getLaptopByName(name);
+		return new ResponseEntity<>(laptopService.getLaptopByNameBetween(name),HttpStatus.OK);
+	}
+	
+	
 	@GetMapping("/ramAvailable/{ramAvailable}")
 	public ResponseEntity<List<Laptop>> getLaptopByRam(@PathVariable String ramAvailable) throws LaptopNotFoundException{
 //		return laptopService.getLaptopByRamAvaliable(ramAvailable);

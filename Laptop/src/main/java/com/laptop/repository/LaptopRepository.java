@@ -25,4 +25,8 @@ public interface LaptopRepository extends JpaRepository<Laptop, Integer>{
 	List<Laptop> findByNameAndPrice(String name , int price);
 	
 	List<Laptop> findByRamAvailableAndOsNameAndPrice(String ramAvailable,String osName,int price);
+	
+	List<Laptop> findByNameStartsWith(String name);
+	
+	List<Laptop> findByNameLike(String name);
 }
