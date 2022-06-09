@@ -155,6 +155,15 @@ public class LaptopService {
 		}
 	}
 	
+	public List<Laptop> getLaptopByNameEndsWith(String name) throws LaptopNotFoundException{
+		
+		if(laptopRepository.findByNameEndsWith(name).isEmpty()){
+			throw new LaptopNotFoundException("This laptop is not present");
+		}else {
+			return laptopRepository.findByNameEndsWith(name);
+		}
+	}
+	
 	public List<Laptop> getLaptopByNameBetween(String name) throws LaptopNotFoundException{
 		name = "%"+name+"%";
 		if(laptopRepository.findByNameLike(name).isEmpty()){

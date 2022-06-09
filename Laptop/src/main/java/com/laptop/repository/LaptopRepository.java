@@ -29,4 +29,6 @@ public interface LaptopRepository extends JpaRepository<Laptop, Integer>{
 	List<Laptop> findByNameStartsWith(String name);
 	
 	List<Laptop> findByNameLike(String name);
+	
+	List<Laptop> findByNameEndsWith(String name);
 }
