@@ -90,7 +90,7 @@ public class LaptopController {
 	}
 	
 	
-	@GetMapping("/betweenname/{name}")
+	@GetMapping("/endWithname/{name}")
 	public ResponseEntity<List<Laptop>>   getLaptopByNameEndsWith(@PathVariable String name) throws LaptopNotFoundException {
 //		return laptopService.getLaptopByName(name);
 		return new ResponseEntity<>(laptopService.getLaptopByNameEndsWith(name),HttpStatus.OK);
